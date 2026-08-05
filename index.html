@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santhwana & Bibin — Engagement Invitation</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================
+           1. CSS VARIABLES & RESET
+           ========================================== */
+        :root {
+            --bg-main: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --bg-alt: #F4F2EE;
+            --primary: #2C3531;      /* Deep Charcoal */
+            --accent: #A3B19B;       /* Muted Sage */
+            --accent-warm: #D8C3A5;  /* Warm Sand */
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border: #E5E2DC;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Montserrat', -apple-system, sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Utility Section Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .text-center { text-align: center; }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: var(--primary);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        /* Fade-in Animation Classes */
+        .fade-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           2. NAVIGATION
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+
+        .navbar.scrolled {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        /* ==========================================
+           3. HERO SECTION
+           ========================================== */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* Placeholder background image - replace url with your image */
+            background: linear-gradient(rgba(44, 53, 49, 0.35), rgba(44, 53, 49, 0.35)),
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
+            color: #FFFFFF;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 4.5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .hero-details {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-number {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        /* Scroll Down Arrow */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #FFFFFF;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+            40% { transform: translate(-50%, -10px); }
+            60% { transform: translate(-50%, -5px); }
+        }
+
+        /* ==========================================
+           4. OUR STORY
+           ========================================== */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-img-wrapper {
+            position: relative;
+            padding: 15px;
+            border: 1px solid var(--accent-warm);
+        }
+
+        .story-img-wrapper img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+        }
+
+        .story-text {
+            padding: 20px 0;
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* ==========================================
+           5. ROADMAP SECTION
+           ========================================== */
+        .roadmap-timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 40px auto 0;
+            padding-left: 30px;
+            border-left: 2px solid var(--accent);
+        }
+
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 20px;
+        }
+
+        .roadmap-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .roadmap-dot {
+            position: absolute;
+            left: -37px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--bg-main);
+            border: 2px solid var(--accent);
+        }
+
+        .roadmap-date {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .roadmap-title {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--primary);
+        }
+
+        /* Auto Strikethrough style for completed events */
+        .roadmap-item.passed .roadmap-title,
+        .roadmap-item.passed .roadmap-date {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .roadmap-item.passed .roadmap-dot {
+            background-color: var(--accent);
+        }
+
+        /* ==========================================
+           6. PHOTO GALLERY
+           ========================================== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            height: 320px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox Overlay */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #FFF;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           7. EVENTS & VENUE
+           ========================================== */
+        .venue-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 850px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .venue-details {
+            margin-bottom: 30px;
+        }
+
+        .venue-name {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 350px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .venue-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: var(--primary);
+            color: #FFFFFF;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            border: 1px solid var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .qr-placeholder {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--bg-alt);
+            padding: 12px 20px;
+            border-radius: 6px;
+        }
+
+        .qr-box {
+            width: 50px;
+            height: 50px;
+            background: #CCC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: #333;
+            border: 1px dashed #888;
+        }
+
+/* ==========================================
+   REDESIGNED FAMILY SECTION STYLES
+   ========================================== */
+.family-section {
+    background-color: var(--bg-main);
+    padding: 100px 0;
+}
+
+.family-grid-v2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.family-card-v2 {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 45px 35px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.family-card-v2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+}
+
+.family-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.family-card-v2 .member-name {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+.house-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-alt);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 30px;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.parents-block {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    margin-bottom: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.info-val {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.meta-row strong {
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .family-grid-v2 {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .parents-block {
+        grid-template-columns: 1fr;
+    }
+}
+        /* ==========================================
+           9. RSVP SECTION & MODAL
+           ========================================== */
+        .rsvp-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: var(--font-sans);
+            background: var(--bg-main);
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: #FFFFFF;
+        }
+
+        /* Persistent Button Styling */
+        .btn-submit {
+            width: 100%;
+            display: block;
+            visibility: visible !important;
+            opacity: 1 !important;
+            margin-top: 10px;
+        }
+
+        /* RSVP Confirmation Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .modal-content h3 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .modal-content p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        /* ==========================================
+           10. FOOTER
+           ========================================== */
+        footer {
+            background: var(--primary);
+            color: #FFFFFF;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-monogram {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--accent-warm);
+        }
+
+        .footer-hashtag {
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            opacity: 0.5;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        /* ==========================================
+           11. RESPONSIVE DESIGN
+           ========================================== */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background: var(--bg-card);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .story-grid,
+            .family-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .venue-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .qr-placeholder {
+                justify-content: center;
+            }
+
+            .countdown {
+                gap: 15px;
+            }
+
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">S & B</a>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story">Our Story</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#event">Event</a></li>
+                <li><a href="#family">Family</a></li>
+                <li><a href="#rsvp">RSVP</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="hero-subtitle">We Are Getting Engaged</p>
+            <h1 class="hero-title">Santhwana & Bibin</h1>
+            <p class="hero-details">October 22, 2026 • Kozhichal, Kerala</p>
+
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Mins</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Secs</span>
+                </div>
+            </div>
+        </div>
+
+        <a href="#story" class="scroll-indicator" aria-label="Scroll Down">
+            <svg viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5"></path>
+            </svg>
+        </a>
+    </section>
+
+    <!-- 2. OUR STORY -->
+    <section class="section-padding container" id="story">
+        <div class="text-center">
+            <p class="section-subtitle">Beginning of Forever</p>
+            <h2 class="section-title">Our Story</h2>
+        </div>
+        <div class="story-grid fade-element">
+            <div class="story-img-wrapper">
+                <!-- Replace with couple photo -->
+                <img src="image2.jpeg" alt="Santhwana and Bibin">
+            </div>
+            <div class="story-text">
+                <h3 style="font-family: var(--font-serif); font-size: 2rem; margin-bottom: 15px; color: var(--primary);">Two Hearts, One Journey</h3>
+                <p>From quietly shared glances to conversations that stretched late into the night, our story unfolded naturally, rooted in love, laughter, and family blessings.</p>
+                <p>What began as a quiet connection soon transformed into an unwavering partnership. Today, surrounded by the warmth of our loved ones, we step joyfully into this next chapter of our lives together.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ROADMAP SECTION -->
+    <section class="section-padding" id="roadmap" style="background-color: var(--bg-alt);">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Milestones</p>
+                <h2 class="section-title">Our Wedding Roadmap</h2>
+            </div>
+
+            <div class="roadmap-timeline fade-element">
+                <!-- Event Dates for Auto-Strike calculation (YYYY-MM-DD) -->
+                <div class="roadmap-item" data-date="2026-02-13">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-date">Feb 13</div>
+                    <div class="roadmap-title">Pennukanal</div>
+                </div>
+
+                <div class="roadmap-item" data-date="2026-05-21">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-date">May 21</div>
+                    <div class="roadmap-title">Fixation</div>
+                </div>
+
+                <div class="roadmap-item" data-date="2026-10-21">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-date">Oct 21</div>
+                    <div class="roadmap-title">Maduram Veppu</div>
+                </div>
+
+                <div class="roadmap-item" data-date="2026-10-22">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-date">Oct 22</div>
+                    <div class="roadmap-title">Engagement</div>
+                </div>
+
+                <div class="roadmap-item" data-date="2026-10-22">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-date">Oct 22</div>
+                    <div class="roadmap-title">Reception</div>
+                </div>
+
+                <div class="roadmap-item" data-date="2026-10-26">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-date">Oct 26</div>
+                    <div class="roadmap-title">Marriage</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PHOTO GALLERY -->
+    <section class="section-padding container" id="gallery">
+        <div class="text-center">
+            <p class="section-subtitle">Memories</p>
+            <h2 class="section-title">Captured Moments</h2>
+        </div>
+
+        <div class="gallery-grid fade-element">
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="image3.jpeg" alt="Gallery Photo 1">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="image4.jpeg" alt="Gallery Photo 2">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="image5.jpeg" alt="Gallery Photo 3">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="image6.jpeg" alt="Gallery Photo 4">
+            </div>
+        </div>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="Zoomed view">
+        </div>
+    </section>
+
+    <!-- 5. ENGAGEMENT EVENTS & VENUE -->
+    <section class="section-padding" id="event" style="background-color: var(--bg-alt);">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Location</p>
+                <h2 class="section-title">Engagement Venue</h2>
+            </div>
+
+            <div class="venue-card fade-element text-center">
+                <div class="venue-details">
+                    <h3 class="venue-name">Kozhichal, Kannur</h3>
+                    <p style="color: var(--text-muted);">11.00 AM Thursday, October 22, 2026</p>
+                </div>
+
+                <!-- Google Maps Embed -->
+                <div class="map-container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124772.35616785819!2d75.3402349805626!3d12.239060674060564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba45b93c0d54a71%3A0x61dec08b13a5ebc!2sSt.%20Sebastian's%20Church%2C%20Kozhichal!5e0!3m2!1sen!2sin!4v1785910620095!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>                </div>
+
+                <div class="venue-actions">
+                    <a href="https://maps.app.goo.gl/AS4e4crCUpD7p2Ay8" target="_blank" class="btn">Open in Google Maps</a>
+
+                    <div class="qr-placeholder">
+                        <div class="qr-box">QR</div>
+                        <span style="font-size: 0.8rem; text-align: left; color: var(--text-muted);">Scan for Map<br>Location</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   <!-- 5. ENGAGEMENT EVENTS & VENUE -->
+    <section class="section-padding" id="event" style="background-color: var(--bg-alt);">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Location</p>
+                <h2 class="section-title">Reception Venue</h2>
+            </div>
+
+            <div class="venue-card fade-element text-center">
+                <div class="venue-details">
+                    <h3 class="venue-name">Meridian Convention Centre, Cherupuzha</h3>
+                    <p style="color: var(--text-muted);">12.00 PM Thursday, October 22, 2026</p>
+                </div>
+
+                <!-- Google Maps Embed -->
+                <div class="map-container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124758.95202094948!2d75.2045523972656!3d12.267403699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba45d89ffc93041%3A0xfacfe1f7b8b1400f!2sMeridian%20Convention%20Centre!5e0!3m2!1sen!2sin!4v1785911031979!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                <div class="venue-actions">
+                    <a href="https://maps.app.goo.gl/gYhMnpKNVKjnnHVM7" target="_blank" class="btn">Open in Google Maps</a>
+
+                    <div class="qr-placeholder">
+                        <div class="qr-box">QR</div>
+                        <span style="font-size: 0.8rem; text-align: left; color: var(--text-muted);">Scan for Map<br>Location</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 6. FAMILY DETAILS -->
+    <!-- 6. FAMILY DETAILS (REDESIGNED) -->
+<section class="section-padding family-section" id="family">
+    <div class="container">
+        <div class="text-center">
+            <p class="section-subtitle">Heritage & Roots</p>
+            <h2 class="section-title">Our Families</h2>
+        </div>
+
+        <div class="family-grid-v2 fade-element">
+            <!-- Bride's Side -->
+            <div class="family-card-v2">
+                <span class="family-badge">The Bride</span>
+                <h3 class="member-name">Santhwana Jose</h3>
+                <div class="house-tag">
+                    🏡 <span><strong>Tharayil</strong> House</span>
+                </div>
+
+                <div class="parents-block">
+                    <div class="info-item">
+                        <span class="info-label">Father</span>
+                        <span class="info-val">Jose Joseph</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Mother</span>
+                        <span class="info-val">Maya Varghese</span>
+                    </div>
+                </div>
+
+                <div class="meta-row">
+                    <div>
+                        <span class="info-label" style="display:block;">Sibling</span>
+                        <span style="font-weight: 500; color: var(--primary);">Richa Jose</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="info-label" style="display:block;">Native</span>
+                        <span style="font-weight: 500; color: var(--primary);">Kozhichal, Kannur</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Groom's Side -->
+            <div class="family-card-v2">
+                <span class="family-badge">The Groom</span>
+                <h3 class="member-name">Bibin Babu</h3>
+                <div class="house-tag">
+                    🏡 <span><strong>Parappuram</strong> House</span>
+                </div>
+
+                <div class="parents-block">
+                    <div class="info-item">
+                        <span class="info-label">Father</span>
+                        <span class="info-val">Babu P.T.</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Mother</span>
+                        <span class="info-val">Jessy Babu</span>
+                    </div>
+                </div>
+
+                <div class="meta-row">
+                    <div>
+                        <span class="info-label" style="display:block;">Sibling</span>
+                        <span style="font-weight: 500; color: var(--primary);">Neha Babu</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="info-label" style="display:block;">Native</span>
+                        <span style="font-weight: 500; color: var(--primary);">Anackampoyil, Kozhikode</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- 7. INTERACTIVE RSVP -->
+    <section class="section-padding" id="rsvp" style="background-color: var(--bg-alt);">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Warm Wishes</p>
+            </div>
+
+            <form class="rsvp-form fade-element" id="rsvpForm" onsubmit="handleRSVP(event)">
+                <div class="form-group">
+                    <label for="guestName">Your Full Name</label>
+                    <input type="text" id="guestName" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="guestMessage">Personal Wishes / Message</label>
+                    <textarea id="guestMessage" rows="4" placeholder="Write your heartfelt message for Santhwana & Bibin..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-submit">Send Blessings & RSVP</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- RSVP Modal Popup -->
+    <div class="modal" id="rsvpModal">
+        <div class="modal-content">
+            <h3>Thank You!</h3>
+            <p id="modalText">Your heartfelt wishes and RSVP have been received with love.</p>
+            <button class="btn" onclick="closeModal()">Close Window</button>
+        </div>
+    </div>
+
+    <!-- 8. FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-monogram">S & B</div>
+            <p class="footer-hashtag">#SanthwanaWedsBibin</p>
+            <p style="font-size: 0.9rem; font-family: var(--font-serif); opacity: 0.9;">We look forward to celebrating our special day with you.</p>
+            <div class="footer-copy">
+                &copy; 2026 Santhwana & Bibin. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // --- 1. Countdown Timer ---
+        const eventDate = new Date('October 22, 2026 10:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = eventDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- 2. Roadmap Auto Strikethrough Logic ---
+        function checkRoadmapDates() {
+            const today = new Date();
+            // Set to beginning of the day for clear date comparison
+            today.setHours(0, 0, 0, 0);
+
+            const items = document.querySelectorAll('.roadmap-item');
+            items.forEach(item => {
+                const dateStr = item.getAttribute('data-date');
+                if (dateStr) {
+                    const itemDate = new Date(dateStr);
+                    if (itemDate < today) {
+                        item.classList.add('passed');
+                    }
+                }
+            });
+        }
+        checkRoadmapDates();
+
+        // --- 3. Navbar Scroll & Mobile Toggle ---
+        const navbar = document.getElementById('navbar');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close nav menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- 4. Lightbox Effects ---
+        function openLightbox(element) {
+            const src = element.querySelector('img').src;
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // --- 5. RSVP Modal Handling ---
+        function handleRSVP(event) {
+            event.preventDefault();
+            const name = document.getElementById('guestName').value;
+            document.getElementById('modalText').innerText = `Thank you, ${name}! Your warm wishes and response have been saved successfully.`;
+            document.getElementById('rsvpModal').classList.add('active');
+            document.getElementById('rsvpForm').reset();
+        }
+
+        function closeModal() {
+            document.getElementById('rsvpModal').classList.remove('active');
+        }
+
+        // --- 6. Scroll Fade-in Animation ---
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-element').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
