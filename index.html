@@ -865,6 +865,100 @@
         box-shadow: 0 0 18px rgba(163, 177, 155, 0.7);
     }
 }
+        /* ==========================================
+ /* ==========================================
+   OVERLAPPING HERO COLLAGE GALLERY
+   ========================================== */
+.gallery-hero-wrapper {
+    position: relative;
+    max-width: 1080px;
+    height: 520px;
+    margin: 40px auto 0;
+}
+
+.gallery-hero-card {
+    position: absolute;
+    border-radius: 2px;
+    background: #FFFFFF;
+    padding: 6px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    transition: transform 0.4s ease, z-index 0.3s ease, box-shadow 0.4s ease;
+}
+
+.gallery-hero-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Elegant thin metallic border around images */
+    border: 1px solid #D4AF37;
+}
+
+/* Card Positioning matching the generated photo layout */
+
+/* Image 1: Left tall vertical photo */
+.gallery-hero-card.hero-img-1 {
+    width: 320px;
+    height: 440px;
+    left: 40px;
+    top: 20px;
+    z-index: 2;
+}
+
+/* Image 2: Center background holding-hands photo */
+.gallery-hero-card.hero-img-2 {
+    width: 260px;
+    height: 320px;
+    left: 290px;
+    top: 60px;
+    z-index: 1;
+}
+
+/* Image 3: Center-right close-up portrait */
+.gallery-hero-card.hero-img-3 {
+    width: 250px;
+    height: 330px;
+    left: 460px;
+    top: 110px;
+    z-index: 3;
+}
+
+/* Image 4: Far-right landscape photo */
+.gallery-hero-card.hero-img-4 {
+    width: 360px;
+    height: 270px;
+    right: 20px;
+    top: 80px;
+    z-index: 2;
+}
+
+/* Hover Zoom effect */
+.gallery-hero-card:hover {
+    transform: scale(1.05);
+    z-index: 10 !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 850px) {
+    .gallery-hero-wrapper {
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .gallery-hero-card {
+        position: relative !important;
+        width: 100% !important;
+        height: 250px !important;
+        left: auto !important;
+        top: auto !important;
+        right: auto !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -895,7 +989,7 @@
         <div class="hero-content">
             <p class="hero-subtitle">We Are Getting Engaged</p>
             <h1 class="hero-title">Santhwana & Bibin</h1>
-            <p class="hero-details">October 22, 2026 • Kozhichal, Kerala</p>
+            <p class="hero-details">October 22, 2026 • Kozhichal, Kannur</p>
 
             <div class="countdown" id="countdown">
                 <div class="countdown-item">
@@ -993,34 +1087,41 @@
     </section>
 
     <!-- 4. PHOTO GALLERY -->
-    <section class="section-padding container" id="gallery">
-        <div class="text-center">
-            <p class="section-subtitle">Memories</p>
-            <h2 class="section-title">Captured Moments</h2>
+<!-- 4. PHOTO GALLERY (OVERLAPPING COLLAGE) -->
+<section class="section-padding container" id="gallery">
+    <div class="text-center">
+        <p class="section-subtitle">Memories</p>
+        <h2 class="section-title">Captured Moments</h2>
+    </div>
+
+    <div class="gallery-hero-wrapper fade-element">
+        <!-- Photo 1 (Left Tall) -->
+        <div class="gallery-hero-card hero-img-1" onclick="openLightbox(this)">
+            <img src="image3.jpeg" alt="Santhwana & Bibin - Moment 1">
         </div>
 
-        <div class="gallery-grid fade-element">
-            <div class="gallery-item" onclick="openLightbox(this)">
-                <img src="image3.jpeg" alt="Gallery Photo 1">
-            </div>
-            <div class="gallery-item" onclick="openLightbox(this)">
-                <img src="image4.jpeg" alt="Gallery Photo 2">
-            </div>
-            <div class="gallery-item" onclick="openLightbox(this)">
-                <img src="image5.jpeg" alt="Gallery Photo 3">
-            </div>
-            <div class="gallery-item" onclick="openLightbox(this)">
-                <img src="image6.jpeg" alt="Gallery Photo 4">
-            </div>
+        <!-- Photo 2 (Center Background) -->
+        <div class="gallery-hero-card hero-img-2" onclick="openLightbox(this)">
+            <img src="image4.jpeg" alt="Santhwana & Bibin - Moment 2">
         </div>
 
-        <!-- Lightbox -->
-        <div class="lightbox" id="lightbox">
-            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-            <img id="lightbox-img" src="" alt="Zoomed view">
+        <!-- Photo 3 (Center Foreground Close-up) -->
+        <div class="gallery-hero-card hero-img-3" onclick="openLightbox(this)">
+            <img src="image5.jpeg" alt="Santhwana & Bibin - Moment 3">
         </div>
-    </section>
 
+        <!-- Photo 4 (Right Landscape) -->
+        <div class="gallery-hero-card hero-img-4" onclick="openLightbox(this)">
+            <img src="image6.jpeg" alt="Santhwana & Bibin - Moment 4">
+        </div>
+    </div>
+
+    <!-- Lightbox Zoom Modal -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Zoomed view">
+    </div>
+</section>
     <!-- 5. ENGAGEMENT EVENTS & VENUE -->
     <section class="section-padding" id="event" style="background-color: var(--bg-alt);">
         <div class="container">
