@@ -182,7 +182,7 @@
         }
 
         /* ==========================================
-           3. HERO SECTION
+           3. HERO SECTION & RAIN EFFECT
            ========================================== */
         .hero {
             height: 100vh;
@@ -191,11 +191,42 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            /* Placeholder background image - replace url with your image */
             background: linear-gradient(rgba(44, 53, 49, 0.35), rgba(44, 53, 49, 0.35)),
                         url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
             color: #FFFFFF;
             padding: 0 20px;
+            overflow: hidden;
+        }
+
+        /* Rain Overlay Container */
+        .rain-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Individual Rain Drop Styling */
+        .drop {
+            position: absolute;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
+            width: 1px;
+            height: 60px;
+            opacity: 0.5;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+            }
+            100% {
+                transform: translateY(105vh);
+            }
         }
 
         .hero-content {
@@ -266,6 +297,7 @@
             color: #FFFFFF;
             animation: bounce 2s infinite;
             cursor: pointer;
+            z-index: 2;
         }
 
         .scroll-indicator svg {
@@ -435,204 +467,230 @@
         }
 
         /* ==========================================
-           7. EVENTS & VENUE
+           7. EVENTS & VENUE (SIDE-BY-SIDE COMPACT)
            ========================================== */
-        .venue-card {
+        .venues-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .venue-card-compact {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            padding: 40px;
+            padding: 25px;
             border-radius: 8px;
-            max-width: 850px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .venue-details {
-            margin-bottom: 30px;
+        .venue-card-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
-        .venue-name {
-            font-family: var(--font-serif);
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .map-container {
+        .venue-img-wrapper-sm {
             width: 100%;
-            height: 350px;
-            border-radius: 6px;
+            height: 180px;
             overflow: hidden;
-            margin-bottom: 30px;
+            border-radius: 6px;
+            margin-bottom: 15px;
             border: 1px solid var(--border);
         }
 
-        .map-container iframe {
+        .venue-img-wrapper-sm img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .venue-img-wrapper-sm:hover img {
+            transform: scale(1.04);
+        }
+
+        .venue-details-sm {
+            margin-bottom: 15px;
+        }
+
+        .venue-name-sm {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .map-container-sm {
+            width: 100%;
+            height: 200px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .map-container-sm iframe {
             width: 100%;
             height: 100%;
             border: 0;
         }
 
-        .venue-actions {
+        .venue-actions-sm {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
+            gap: 10px;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            background: var(--primary);
-            color: #FFFFFF;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            border-radius: 4px;
-            border: 1px solid var(--primary);
-            cursor: pointer;
-            transition: var(--transition);
+        .btn-sm {
+            padding: 10px 18px;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
         }
 
-        .btn:hover {
-            background: transparent;
-            color: var(--primary);
-        }
-
-        .qr-placeholder {
+        .qr-placeholder-sm {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             background: var(--bg-alt);
-            padding: 12px 20px;
+            padding: 8px 12px;
             border-radius: 6px;
         }
 
-        .qr-box {
-            width: 50px;
-            height: 50px;
+        .qr-box-sm {
+            width: 36px;
+            height: 36px;
             background: #CCC;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             color: #333;
             border: 1px dashed #888;
         }
 
-/* ==========================================
-   REDESIGNED FAMILY SECTION STYLES
-   ========================================== */
-.family-section {
-    background-color: var(--bg-main);
-    padding: 100px 0;
-}
+        /* ==========================================
+           REDESIGNED FAMILY SECTION STYLES
+           ========================================== */
+        .family-section {
+            background-color: var(--bg-main);
+            padding: 100px 0;
+        }
 
-.family-grid-v2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 40px;
-}
+        .family-grid-v2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
 
-.family-card-v2 {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 45px 35px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .family-card-v2 {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 45px 35px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.family-card-v2:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-}
+        .family-card-v2:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+        }
 
-.family-badge {
-    display: inline-block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 8px;
-}
+        .family-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
 
-.family-card-v2 .member-name {
-    font-family: var(--font-serif);
-    font-size: 2.2rem;
-    color: var(--primary);
-    margin-bottom: 25px;
-    line-height: 1.1;
-}
+        .family-card-v2 .member-name {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
 
-.house-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--bg-alt);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    color: var(--primary);
-    font-weight: 500;
-    margin-bottom: 30px;
-    border: 1px solid rgba(0,0,0,0.04);
-}
+        .house-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-alt);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
 
-.parents-block {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 0;
-    margin-bottom: 25px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
+        .parents-block {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
 
-.info-item {
-    display: flex;
-    flex-direction: column;
-}
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
 
-.info-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--text-muted);
-    margin-bottom: 4px;
-}
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
 
-.info-val {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    color: var(--primary);
-    font-weight: 600;
-}
+        .info-val {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
 
-.meta-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
 
-.meta-row strong {
-    color: var(--primary);
-}
+        .meta-row strong {
+            color: var(--primary);
+        }
 
-@media (max-width: 768px) {
-    .family-grid-v2 {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    .parents-block {
-        grid-template-columns: 1fr;
-    }
-}
+        @media (max-width: 768px) {
+            .family-grid-v2 {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .parents-block {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* ==========================================
            9. RSVP SECTION & MODAL
            ========================================== */
@@ -767,6 +825,22 @@
         /* ==========================================
            11. RESPONSIVE DESIGN
            ========================================== */
+        @media (max-width: 850px) {
+            .venues-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .venue-actions-sm {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .qr-placeholder-sm {
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
@@ -800,15 +874,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .venue-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .qr-placeholder {
-                justify-content: center;
-            }
-
             .countdown {
                 gap: 15px;
             }
@@ -819,158 +884,154 @@
         }
 
         /* ==========================================
-   FLOATING MUSIC PLAYER BUTTON (BOTTOM-LEFT)
-   ========================================== */
-.music-player-btn {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-    width: 50px;
-    height: 50px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    z-index: 1500;
-    transition: all 0.3s ease;
-}
+           FLOATING MUSIC PLAYER BUTTON (BOTTOM-LEFT)
+           ========================================== */
+        .music-player-btn {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 1500;
+            transition: all 0.3s ease;
+        }
 
-.music-player-btn:hover {
-    transform: scale(1.08);
-    border-color: var(--accent);
-}
+        .music-player-btn:hover {
+            transform: scale(1.08);
+            border-color: var(--accent);
+        }
 
-.music-player-btn svg {
-    width: 22px;
-    height: 22px;
-    fill: var(--primary);
-    transition: fill 0.3s ease;
-}
+        .music-player-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--primary);
+            transition: fill 0.3s ease;
+        }
 
-/* Rotating animation when music is playing */
-.music-player-btn.playing {
-    border-color: var(--accent);
-    animation: pulseGlow 2s infinite alternate;
-}
+        .music-player-btn.playing {
+            border-color: var(--accent);
+            animation: pulseGlow 2s infinite alternate;
+        }
 
-@keyframes pulseGlow {
-    0% {
-        box-shadow: 0 0 5px rgba(163, 177, 155, 0.3);
-    }
-    100% {
-        box-shadow: 0 0 18px rgba(163, 177, 155, 0.7);
-    }
-}
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 5px rgba(163, 177, 155, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 18px rgba(163, 177, 155, 0.7);
+            }
+        }
+
         /* ==========================================
- /* ==========================================
-/* ==========================================
-   OVERLAPPING COLLAGE GALLERY (RESPONSIVE)
-   ========================================== */
-.gallery-hero-wrapper {
-    position: relative;
-    max-width: 1080px;
-    height: 520px;
-    margin: 40px auto 0;
-}
+           OVERLAPPING COLLAGE GALLERY (RESPONSIVE)
+           ========================================== */
+        .gallery-hero-wrapper {
+            position: relative;
+            max-width: 1080px;
+            height: 520px;
+            margin: 40px auto 0;
+        }
 
-.gallery-hero-card {
-    position: absolute;
-    border-radius: 2px;
-    background: #FFFFFF;
-    padding: 6px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-    cursor: pointer;
-    transition: transform 0.4s ease, z-index 0.3s ease, box-shadow 0.4s ease;
-}
+        .gallery-hero-card {
+            position: absolute;
+            border-radius: 2px;
+            background: #FFFFFF;
+            padding: 6px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            transition: transform 0.4s ease, z-index 0.3s ease, box-shadow 0.4s ease;
+        }
 
-.gallery-hero-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border: 1px solid #D4AF37;
-}
+        .gallery-hero-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border: 1px solid #D4AF37;
+        }
 
-/* Card Positioning Desktop */
-.gallery-hero-card.hero-img-1 {
-    width: 320px;
-    height: 440px;
-    left: 40px;
-    top: 20px;
-    z-index: 2;
-}
+        /* Card Positioning Desktop */
+        .gallery-hero-card.hero-img-1 {
+            width: 320px;
+            height: 440px;
+            left: 40px;
+            top: 20px;
+            z-index: 2;
+        }
 
-.gallery-hero-card.hero-img-2 {
-    width: 260px;
-    height: 320px;
-    left: 290px;
-    top: 60px;
-    z-index: 1;
-}
+        .gallery-hero-card.hero-img-2 {
+            width: 260px;
+            height: 320px;
+            left: 290px;
+            top: 60px;
+            z-index: 1;
+        }
 
-.gallery-hero-card.hero-img-3 {
-    width: 250px;
-    height: 330px;
-    left: 460px;
-    top: 110px;
-    z-index: 3;
-}
+        .gallery-hero-card.hero-img-3 {
+            width: 250px;
+            height: 330px;
+            left: 460px;
+            top: 110px;
+            z-index: 3;
+        }
 
-.gallery-hero-card.hero-img-4 {
-    width: 360px;
-    height: 270px;
-    right: 20px;
-    top: 80px;
-    z-index: 2;
-}
+        .gallery-hero-card.hero-img-4 {
+            width: 360px;
+            height: 270px;
+            right: 20px;
+            top: 80px;
+            z-index: 2;
+        }
 
-.gallery-hero-card:hover {
-    transform: scale(1.05);
-    z-index: 10 !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
+        .gallery-hero-card:hover {
+            transform: scale(1.05);
+            z-index: 10 !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
 
-/* Maintain identical overlapping design on mobile */
-@media (max-width: 850px) {
-    .gallery-hero-wrapper {
-        height: 280px; /* Scaled down height */
-        width: 100%;
-        overflow: hidden;
-    }
+        @media (max-width: 850px) {
+            .gallery-hero-wrapper {
+                height: 280px;
+                width: 100%;
+                overflow: hidden;
+            }
 
-    .gallery-hero-card.hero-img-1 {
-        width: 38%;
-        height: 220px;
-        left: 2%;
-        top: 10px;
-    }
+            .gallery-hero-card.hero-img-1 {
+                width: 38%;
+                height: 220px;
+                left: 2%;
+                top: 10px;
+            }
 
-    .gallery-hero-card.hero-img-2 {
-        width: 32%;
-        height: 160px;
-        left: 28%;
-        top: 30px;
-    }
+            .gallery-hero-card.hero-img-2 {
+                width: 32%;
+                height: 160px;
+                left: 28%;
+                top: 30px;
+            }
 
-    .gallery-hero-card.hero-img-3 {
-        width: 30%;
-        height: 170px;
-        left: 44%;
-        top: 55px;
-    }
+            .gallery-hero-card.hero-img-3 {
+                width: 30%;
+                height: 170px;
+                left: 44%;
+                top: 55px;
+            }
 
-    .gallery-hero-card.hero-img-4 {
-        width: 42%;
-        height: 140px;
-        right: 2%;
-        top: 40px;
-    }
-}
-
+            .gallery-hero-card.hero-img-4 {
+                width: 42%;
+                height: 140px;
+                right: 2%;
+                top: 40px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -998,6 +1059,9 @@
 
     <!-- 1. HERO SECTION -->
     <section class="hero" id="home">
+        <!-- Rain effect container -->
+        <div class="rain-container" id="rainContainer"></div>
+
         <div class="hero-content">
             <p class="hero-subtitle">We Are Getting Engaged</p>
             <h1 class="hero-title">Santhwana & Bibin</h1>
@@ -1038,7 +1102,6 @@
         </div>
         <div class="story-grid fade-element">
             <div class="story-img-wrapper">
-                <!-- Replace with couple photo -->
                 <img src="image2.jpeg" alt="Santhwana and Bibin">
             </div>
             <div class="story-text">
@@ -1058,7 +1121,6 @@
             </div>
 
             <div class="roadmap-timeline fade-element">
-                <!-- Event Dates for Auto-Strike calculation (YYYY-MM-DD) -->
                 <div class="roadmap-item" data-date="2026-02-13">
                     <div class="roadmap-dot"></div>
                     <div class="roadmap-date">Feb 13</div>
@@ -1098,173 +1160,179 @@
         </div>
     </section>
 
-    <!-- 4. PHOTO GALLERY -->
-<!-- 4. PHOTO GALLERY (OVERLAPPING COLLAGE) -->
-<section class="section-padding container" id="gallery">
-    <div class="text-center">
-        <p class="section-subtitle">Memories</p>
-        <h2 class="section-title">Captured Moments</h2>
-    </div>
-
-    <div class="gallery-hero-wrapper fade-element">
-        <!-- Photo 1 (Left Tall) -->
-        <div class="gallery-hero-card hero-img-1" onclick="openLightbox(this)">
-            <img src="image3.jpeg" alt="Santhwana & Bibin - Moment 1">
-        </div>
-
-        <!-- Photo 2 (Center Background) -->
-        <div class="gallery-hero-card hero-img-2" onclick="openLightbox(this)">
-            <img src="image4.jpeg" alt="Santhwana & Bibin - Moment 2">
-        </div>
-
-        <!-- Photo 3 (Center Foreground Close-up) -->
-        <div class="gallery-hero-card hero-img-3" onclick="openLightbox(this)">
-            <img src="image5.jpeg" alt="Santhwana & Bibin - Moment 3">
-        </div>
-
-        <!-- Photo 4 (Right Landscape) -->
-        <div class="gallery-hero-card hero-img-4" onclick="openLightbox(this)">
-            <img src="image6.jpeg" alt="Santhwana & Bibin - Moment 4">
-        </div>
-    </div>
-
-    <!-- Lightbox Zoom Modal -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <img id="lightbox-img" src="" alt="Zoomed view">
-    </div>
-</section>
-    <!-- 5. ENGAGEMENT EVENTS & VENUE -->
-    <section class="section-padding" id="event" style="background-color: var(--bg-alt);">
-        <div class="container">
-            <div class="text-center">
-                <p class="section-subtitle">Location</p>
-                <h2 class="section-title">Engagement Venue</h2>
-            </div>
-
-            <div class="venue-card fade-element text-center">
-                <div class="venue-details">
-                    <h3 class="venue-name">Kozhichal, Kannur</h3>
-                    <p style="color: var(--text-muted);">11.00 AM Thursday, October 22, 2026</p>
-                </div>
-
-                <!-- Google Maps Embed -->
-                <div class="map-container">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124772.35616785819!2d75.3402349805626!3d12.239060674060564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba45b93c0d54a71%3A0x61dec08b13a5ebc!2sSt.%20Sebastian's%20Church%2C%20Kozhichal!5e0!3m2!1sen!2sin!4v1785910620095!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>                </div>
-
-                <div class="venue-actions">
-                    <a href="https://maps.app.goo.gl/AS4e4crCUpD7p2Ay8" target="_blank" class="btn">Open in Google Maps</a>
-
-                    <div class="qr-placeholder">
-                        <div class="qr-box">QR</div>
-                        <span style="font-size: 0.8rem; text-align: left; color: var(--text-muted);">Scan for Map<br>Location</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-   <!-- 5. ENGAGEMENT EVENTS & VENUE -->
-    <section class="section-padding" id="event" style="background-color: var(--bg-alt);">
-        <div class="container">
-            <div class="text-center">
-                <p class="section-subtitle">Location</p>
-                <h2 class="section-title">Reception Venue</h2>
-            </div>
-
-            <div class="venue-card fade-element text-center">
-                <div class="venue-details">
-                    <h3 class="venue-name">Meridian Convention Centre, Cherupuzha</h3>
-                    <p style="color: var(--text-muted);">12.00 PM Thursday, October 22, 2026</p>
-                </div>
-
-                <!-- Google Maps Embed -->
-                <div class="map-container">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124758.95202094948!2d75.2045523972656!3d12.267403699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba45d89ffc93041%3A0xfacfe1f7b8b1400f!2sMeridian%20Convention%20Centre!5e0!3m2!1sen!2sin!4v1785911031979!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                <div class="venue-actions">
-                    <a href="https://maps.app.goo.gl/gYhMnpKNVKjnnHVM7" target="_blank" class="btn">Open in Google Maps</a>
-
-                    <div class="qr-placeholder">
-                        <div class="qr-box">QR</div>
-                        <span style="font-size: 0.8rem; text-align: left; color: var(--text-muted);">Scan for Map<br>Location</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- 6. FAMILY DETAILS -->
-    <!-- 6. FAMILY DETAILS (REDESIGNED) -->
-<section class="section-padding family-section" id="family">
-    <div class="container">
+    <!-- 4. PHOTO GALLERY (OVERLAPPING COLLAGE) -->
+    <section class="section-padding container" id="gallery">
         <div class="text-center">
-            <p class="section-subtitle">Heritage & Roots</p>
-            <h2 class="section-title">Our Families</h2>
+            <p class="section-subtitle">Memories</p>
+            <h2 class="section-title">Captured Moments</h2>
         </div>
 
-        <div class="family-grid-v2 fade-element">
-            <!-- Bride's Side -->
-            <div class="family-card-v2">
-                <span class="family-badge">The Bride</span>
-                <h3 class="member-name">Santhwana Jose</h3>
-                <div class="house-tag">
-                    🏡 <span><strong>Tharayil</strong> House</span>
-                </div>
+        <div class="gallery-hero-wrapper fade-element">
+            <div class="gallery-hero-card hero-img-1" onclick="openLightbox(this)">
+                <img src="image3.jpeg" alt="Santhwana & Bibin - Moment 1">
+            </div>
 
-                <div class="parents-block">
-                    <div class="info-item">
-                        <span class="info-label">Father</span>
-                        <span class="info-val">Jose Joseph</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Mother</span>
-                        <span class="info-val">Maya Varghese</span>
-                    </div>
-                </div>
+            <div class="gallery-hero-card hero-img-2" onclick="openLightbox(this)">
+                <img src="image4.jpeg" alt="Santhwana & Bibin - Moment 2">
+            </div>
 
-                <div class="meta-row">
+            <div class="gallery-hero-card hero-img-3" onclick="openLightbox(this)">
+                <img src="image5.jpeg" alt="Santhwana & Bibin - Moment 3">
+            </div>
+
+            <div class="gallery-hero-card hero-img-4" onclick="openLightbox(this)">
+                <img src="image6.jpeg" alt="Santhwana & Bibin - Moment 4">
+            </div>
+        </div>
+
+        <!-- Lightbox Zoom Modal -->
+        <div class="lightbox" id="lightbox">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="Zoomed view">
+        </div>
+    </section>
+
+    <!-- 5. EVENTS & VENUES (SINGLE LINE / COMPACT SIDE-BY-SIDE) -->
+    <section class="section-padding" id="event" style="background-color: var(--bg-alt);">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Locations</p>
+                <h2 class="section-title">Event Venues</h2>
+            </div>
+
+            <div class="venues-grid fade-element text-center">
+                <!-- Engagement Venue -->
+                <div class="venue-card-compact">
                     <div>
-                        <span class="info-label" style="display:block;">Sibling</span>
-                        <span style="font-weight: 500; color: var(--primary);">Richa Jose</span>
+                        <span class="venue-card-tag">Engagement Venue</span>
+                        <div class="venue-img-wrapper-sm" onclick="openLightbox(this)" style="cursor: pointer;">
+                            <img src="church.jpeg" alt="St. Sebastian's Church, Kozhichal">
+                        </div>
+
+                        <div class="venue-details-sm">
+                            <h3 class="venue-name-sm">St. Sebastian's Church, Kozhichal</h3>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">11.00 AM Thursday, Oct 22, 2026</p>
+                        </div>
+
+                        <div class="map-container-sm">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124772.35616785819!2d75.3402349805626!3d12.239060674060564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba45b93c0d54a71%3A0x61dec08b13a5ebc!2sSt.%20Sebastian's%20Church%2C%20Kozhichal!5e0!3m2!1sen!2sin!4v1785910620095!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        </div>
                     </div>
-                    <div style="text-align: right;">
-                        <span class="info-label" style="display:block;">Native</span>
-                        <span style="font-weight: 500; color: var(--primary);">Kozhichal, Kannur</span>
+
+                    <div class="venue-actions-sm">
+                        <a href="https://maps.app.goo.gl/AS4e4crCUpD7p2Ay8" target="_blank" class="btn btn-sm">Google Maps</a>
+
+                        <div class="qr-placeholder-sm">
+                            <div class="qr-box-sm">QR</div>
+                            <span style="font-size: 0.7rem; text-align: left; color: var(--text-muted);">Scan Location</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reception Venue -->
+                <div class="venue-card-compact">
+                    <div>
+                        <span class="venue-card-tag">Reception Venue</span>
+                        <div class="venue-img-wrapper-sm" onclick="openLightbox(this)" style="cursor: pointer;">
+                            <img src="meri.jpg" alt="Meridian Convention Centre, Cherupuzha">
+                        </div>
+
+                        <div class="venue-details-sm">
+                            <h3 class="venue-name-sm">Meridian Convention Centre</h3>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">12.00 PM Thursday, Oct 22, 2026</p>
+                        </div>
+
+                        <div class="map-container-sm">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124758.95202094948!2d75.2045523972656!3d12.267403699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba45d89ffc93041%3A0xfacfe1f7b8b1400f!2sMeridian%20Convention%20Centre!5e0!3m2!1sen!2sin!4v1785911031979!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="venue-actions-sm">
+                        <a href="https://maps.app.goo.gl/gYhMnpKNVKjnnHVM7" target="_blank" class="btn btn-sm">Google Maps</a>
+
+                        <div class="qr-placeholder-sm">
+                            <div class="qr-box-sm">QR</div>
+                            <span style="font-size: 0.7rem; text-align: left; color: var(--text-muted);">Scan Location</span>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Groom's Side -->
-            <div class="family-card-v2">
-                <span class="family-badge">The Groom</span>
-                <h3 class="member-name">Bibin Babu</h3>
-                <div class="house-tag">
-                    🏡 <span><strong>Parappuram</strong> House</span>
+    <!-- 6. FAMILY DETAILS (REDESIGNED) -->
+    <section class="section-padding family-section" id="family">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-subtitle">Heritage & Roots</p>
+                <h2 class="section-title">Our Families</h2>
+            </div>
+
+            <div class="family-grid-v2 fade-element">
+                <!-- Bride's Side -->
+                <div class="family-card-v2">
+                    <span class="family-badge">The Bride</span>
+                    <h3 class="member-name">Santhwana Jose</h3>
+                    <div class="house-tag">
+                        🏡 <span><strong>Tharayil</strong> House</span>
+                    </div>
+
+                    <div class="parents-block">
+                        <div class="info-item">
+                            <span class="info-label">Father</span>
+                            <span class="info-val">Jose Joseph</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Mother</span>
+                            <span class="info-val">Maya Varghese</span>
+                        </div>
+                    </div>
+
+                    <div class="meta-row">
+                        <div>
+                            <span class="info-label" style="display:block;">Sibling</span>
+                            <span style="font-weight: 500; color: var(--primary);">Richa Jose</span>
+                        </div>
+                        <div style="text-align: right;">
+                            <span class="info-label" style="display:block;">Native</span>
+                            <span style="font-weight: 500; color: var(--primary);">Kozhichal, Kannur</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="parents-block">
-                    <div class="info-item">
-                        <span class="info-label">Father</span>
-                        <span class="info-val">Babu P.T.</span>
+                <!-- Groom's Side -->
+                <div class="family-card-v2">
+                    <span class="family-badge">The Groom</span>
+                    <h3 class="member-name">Bibin Babu</h3>
+                    <div class="house-tag">
+                        🏡 <span><strong>Parappuram</strong> House</span>
                     </div>
-                    <div class="info-item">
-                        <span class="info-label">Mother</span>
-                        <span class="info-val">Jessy Babu</span>
-                    </div>
-                </div>
 
-                <div class="meta-row">
-                    <div>
-                        <span class="info-label" style="display:block;">Sibling</span>
-                        <span style="font-weight: 500; color: var(--primary);">Neha Babu</span>
+                    <div class="parents-block">
+                        <div class="info-item">
+                            <span class="info-label">Father</span>
+                            <span class="info-val">Babu P.T.</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Mother</span>
+                            <span class="info-val">Jessy Babu</span>
+                        </div>
                     </div>
-                    <div style="text-align: right;">
-                        <span class="info-label" style="display:block;">Native</span>
-                        <span style="font-weight: 500; color: var(--primary);">Anackampoyil, Kozhikode</span>
+
+                    <div class="meta-row">
+                        <div>
+                            <span class="info-label" style="display:block;">Sibling</span>
+                            <span style="font-weight: 500; color: var(--primary);">Neha Babu</span>
+                        </div>
+                        <div style="text-align: right;">
+                            <span class="info-label" style="display:block;">Native</span>
+                            <span style="font-weight: 500; color: var(--primary);">Anackampoyil, Kozhikode</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- 7. INTERACTIVE RSVP -->
     <section class="section-padding" id="rsvp" style="background-color: var(--bg-alt);">
@@ -1309,61 +1377,80 @@
             </div>
         </div>
     </footer>
+
     <!-- FLOATING MUSIC PLAYER BUTTON -->
-<div class="music-player-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Toggle Background Music">
-    <!-- Play Icon -->
-    <svg id="playIcon" viewBox="0 0 24 24">
-        <path d="M8 5v14l11-7z"/>
-    </svg>
-    <!-- Pause Icon -->
-    <svg id="pauseIcon" viewBox="0 0 24 24" style="display: none;">
-        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-    </svg>
-</div>
+    <div class="music-player-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Toggle Background Music">
+        <svg id="playIcon" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg id="pauseIcon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+    </div>
 
-<!-- Audio element (Replace audio source URL with your preferred MP3 link) -->
-<audio id="bgMusic" loop>
-    <source src="whatsap.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+    <audio id="bgMusic" loop>
+        <source src="whatsap.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
+        // --- Rain Drop Generator ---
+        function createRain() {
+            const rainContainer = document.getElementById('rainContainer');
+            if (!rainContainer) return;
+            const dropCount = 60; // Total raindrops
+
+            for (let i = 0; i < dropCount; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('drop');
+
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = 0.8 + Math.random() * 0.6;
+
+                drop.style.left = posX + '%';
+                drop.style.animationDelay = delay + 's';
+                drop.style.animationDuration = duration + 's';
+
+                rainContainer.appendChild(drop);
+            }
+        }
+        createRain();
+
         // --- Floating Music Player Controls ---
-const bgMusic = document.getElementById('bgMusic');
-const musicBtn = document.getElementById('musicBtn');
-const playIcon = document.getElementById('playIcon');
-const pauseIcon = document.getElementById('pauseIcon');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
 
-function toggleMusic() {
-    if (bgMusic.paused) {
-        bgMusic.play().then(() => {
-            musicBtn.classList.add('playing');
-            playIcon.style.display = 'none';
-            pauseIcon.style.display = 'block';
-        }).catch(error => {
-            console.log("Autoplay prevented by browser:", error);
-        });
-    } else {
-        bgMusic.pause();
-        musicBtn.classList.remove('playing');
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
-    }
-}
+        function toggleMusic() {
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    musicBtn.classList.add('playing');
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
+                }).catch(error => {
+                    console.log("Autoplay prevented by browser:", error);
+                });
+            } else {
+                bgMusic.pause();
+                musicBtn.classList.remove('playing');
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        }
 
-// Optional: Start music automatically on the user's first interaction anywhere on the page
-document.addEventListener('click', function startOnFirstInteraction() {
-    if (bgMusic.paused && !musicBtn.classList.contains('user-paused')) {
-        bgMusic.play().then(() => {
-            musicBtn.classList.add('playing');
-            playIcon.style.display = 'none';
-            pauseIcon.style.display = 'block';
-        }).catch(() => {});
-    }
-    document.removeEventListener('click', startOnFirstInteraction);
-}, { once: true });
-    </script>
-    <!-- JAVASCRIPT -->
-    <script>
+        document.addEventListener('click', function startOnFirstInteraction() {
+            if (bgMusic.paused && !musicBtn.classList.contains('user-paused')) {
+                bgMusic.play().then(() => {
+                    musicBtn.classList.add('playing');
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
+                }).catch(() => {});
+            }
+            document.removeEventListener('click', startOnFirstInteraction);
+        }, { once: true });
+
         // --- 1. Countdown Timer ---
         const eventDate = new Date('October 22, 2026 10:00:00').getTime();
 
@@ -1389,7 +1476,6 @@ document.addEventListener('click', function startOnFirstInteraction() {
         // --- 2. Roadmap Auto Strikethrough Logic ---
         function checkRoadmapDates() {
             const today = new Date();
-            // Set to beginning of the day for clear date comparison
             today.setHours(0, 0, 0, 0);
 
             const items = document.querySelectorAll('.roadmap-item');
@@ -1422,7 +1508,6 @@ document.addEventListener('click', function startOnFirstInteraction() {
             navLinks.classList.toggle('active');
         });
 
-        // Close nav menu on link click
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
