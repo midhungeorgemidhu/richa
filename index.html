@@ -867,7 +867,8 @@
 }
         /* ==========================================
  /* ==========================================
-   OVERLAPPING HERO COLLAGE GALLERY
+/* ==========================================
+   OVERLAPPING COLLAGE GALLERY (RESPONSIVE)
    ========================================== */
 .gallery-hero-wrapper {
     position: relative;
@@ -891,13 +892,10 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    /* Elegant thin metallic border around images */
     border: 1px solid #D4AF37;
 }
 
-/* Card Positioning matching the generated photo layout */
-
-/* Image 1: Left tall vertical photo */
+/* Card Positioning Desktop */
 .gallery-hero-card.hero-img-1 {
     width: 320px;
     height: 440px;
@@ -906,7 +904,6 @@
     z-index: 2;
 }
 
-/* Image 2: Center background holding-hands photo */
 .gallery-hero-card.hero-img-2 {
     width: 260px;
     height: 320px;
@@ -915,7 +912,6 @@
     z-index: 1;
 }
 
-/* Image 3: Center-right close-up portrait */
 .gallery-hero-card.hero-img-3 {
     width: 250px;
     height: 330px;
@@ -924,7 +920,6 @@
     z-index: 3;
 }
 
-/* Image 4: Far-right landscape photo */
 .gallery-hero-card.hero-img-4 {
     width: 360px;
     height: 270px;
@@ -933,32 +928,49 @@
     z-index: 2;
 }
 
-/* Hover Zoom effect */
 .gallery-hero-card:hover {
     transform: scale(1.05);
     z-index: 10 !important;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Mobile Responsiveness */
+/* Maintain identical overlapping design on mobile */
 @media (max-width: 850px) {
     .gallery-hero-wrapper {
-        height: auto;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 0 10px;
+        height: 280px; /* Scaled down height */
+        width: 100%;
+        overflow: hidden;
     }
 
-    .gallery-hero-card {
-        position: relative !important;
-        width: 100% !important;
-        height: 250px !important;
-        left: auto !important;
-        top: auto !important;
-        right: auto !important;
+    .gallery-hero-card.hero-img-1 {
+        width: 38%;
+        height: 220px;
+        left: 2%;
+        top: 10px;
+    }
+
+    .gallery-hero-card.hero-img-2 {
+        width: 32%;
+        height: 160px;
+        left: 28%;
+        top: 30px;
+    }
+
+    .gallery-hero-card.hero-img-3 {
+        width: 30%;
+        height: 170px;
+        left: 44%;
+        top: 55px;
+    }
+
+    .gallery-hero-card.hero-img-4 {
+        width: 42%;
+        height: 140px;
+        right: 2%;
+        top: 40px;
     }
 }
+
     </style>
 </head>
 <body>
